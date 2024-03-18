@@ -1,11 +1,11 @@
-package timers // import "fknsrs.biz/p/ottoext/timers"
+package timers // import "github.com/topac/ottoext/timers"
 
 import (
 	"time"
 
 	"github.com/robertkrimen/otto"
 
-	"fknsrs.biz/p/ottoext/loop"
+	"github.com/topac/ottoext/loop"
 )
 
 var minDelay = map[bool]int64{

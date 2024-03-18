@@ -1,4 +1,4 @@
-package fetch // import "fknsrs.biz/p/ottoext/fetch"
+package fetch // import "github.com/topac/ottoext/fetch"
 
 import (
 	"io"
@@ -7,12 +7,18 @@ import (
 	"net/http/httptest"
 	"strings"
 
-	"github.com/GeertJohan/go.rice"
+	rice "github.com/GeertJohan/go.rice"
 	"github.com/robertkrimen/otto"
 
-	"fknsrs.biz/p/ottoext/loop"
-	"fknsrs.biz/p/ottoext/promise"
+	"github.com/topac/ottoext/loop"
+	"github.com/topac/ottoext/promise"
 )
+
+var _httpc *http.Client = http.DefaultClient
+
+func SetHttpClient(h *http.Client) {
+	_httpc = h
+}
 
 func mustValue(v otto.Value, err error) otto.Value {
 	if err != nil {
@@ -131,7 +137,7 @@ func DefineWithHandler(vm *otto.Otto, l *loop.Loop, h http.Handler) error {
 				t.headers = res.Header()
 				t.body = res.Body.Bytes()
 			} else {
-				res, err := http.DefaultClient.Do(req)
+				res, err := _httpc.Do(req)
 				if err != nil {
 					t.err = err
 					return

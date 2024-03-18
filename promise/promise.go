@@ -1,10 +1,10 @@
-package promise // import "fknsrs.biz/p/ottoext/promise"
+package promise // import "github.com/topac/ottoext/promise"
 
 import (
 	"github.com/robertkrimen/otto"
 
-	"fknsrs.biz/p/ottoext/loop"
-	"fknsrs.biz/p/ottoext/timers"
+	"github.com/topac/ottoext/loop"
+	"github.com/topac/ottoext/timers"
 )
 
 func Define(vm *otto.Otto, l *loop.Loop) error {
